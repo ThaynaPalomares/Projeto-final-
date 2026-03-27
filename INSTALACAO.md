@@ -13,4 +13,4 @@ Configurar o ambiente de desenvolvimento do sistema ESM Forum, composto por back
 1. Fazer fork do repositório backend (esmforum).
 2. Clonar o repositório:
    ```bash
-   git clone https://github.com/SEU-USUARIO/esmforum.git
+   git clone https://github.com/ThaynaPalomares/esmforum.git
