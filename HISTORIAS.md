@@ -8,7 +8,7 @@
 
 **Critérios de Aceitação:**
 - [ ] O sistema deve permitir inserir palavras-chave em um campo de busca
-- [ ] O sistema deve retornar perguntas relacionadas ao termo pesquisado
+- [ ] O sistema deve retornar uma lista de perguntas que contenham o termo pesquisado
 - [ ] A busca deve considerar o título e o conteúdo da pergunta
 - [ ] O sistema deve exibir mensagem quando não houver resultados
 
