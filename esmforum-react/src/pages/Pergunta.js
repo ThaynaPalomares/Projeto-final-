@@ -82,8 +82,28 @@ function NovaPergunta(props) {
   );
 }
 
+function CampoBusca({ termoBusca, setTermoBusca }) {
+  return (
+    <Container className="mt-4">
+      <Form>
+        <Form.Group>
+          <Form.Label><strong>Buscar perguntas:</strong></Form.Label>
+          <Form.Control
+            type="text"
+            value={termoBusca}
+            onChange={(e) => setTermoBusca(e.target.value)}
+            placeholder="Digite uma palavra-chave..."
+            style={{ borderRadius: '8px' }}
+          />
+        </Form.Group>
+      </Form>
+    </Container>
+  );
+}
+
 function Pergunta() {
   const [listaPerguntas, setListaPerguntas] = React.useState([]);
+  const [termoBusca, setTermoBusca] = React.useState([]);
 
   function adicionarNovaPergunta(id_pergunta, pergunta) {
     setListaPerguntas((prev) => {
@@ -111,32 +131,43 @@ function Pergunta() {
   }
 
   function TabelaPrincipal() {
-    const linhas = listaPerguntas.map((p) => (
+    const perguntasFiltradas = listaPerguntas.filter((p) =>
+      p.texto.toLowerCase().includes(termoBusca.toLowerCase())
+    );
+
+    const linhas = perguntasFiltradas.map((p) => (
       <LinhaTabela pergunta={p} key={p.id_pergunta} />
     ));
 
     return (
       <div className="container mt-4">
         <center><h4>Perguntas Atuais</h4></center>
-        <Table
-          id="tabela-perguntas"
-          striped
-          bordered
-          hover
-          responsive
-          className="mt-3 shadow-sm bg-white"
-        >
-          <thead>
-            <tr>
-              <th className="text-center">ID</th>
-              <th className="text-center">Pergunta</th>
-              <th className="text-center"># Respostas</th>
-            </tr>
-          </thead>
-          <tbody>
-            {linhas}
-          </tbody>
-        </Table>
+
+        {perguntasFiltradas.length === 0 ? (
+          <Alert variant="warning" className="mt-3">
+            Nenhuma pergunta encontrada.
+          </Alert>
+        ) : (
+          <Table
+            id="tabela-perguntas"
+            striped
+            bordered
+            hover
+            responsive
+            className="mt-3 shadow-sm bg-white"
+          >
+            <thead>
+              <tr>
+                <th className="text-center">ID</th>
+                <th className="text-center">Pergunta</th>
+                <th className="text-center"># Respostas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {linhas}
+            </tbody>
+          </Table>
+        )}
       </div>
     );
   }
@@ -155,6 +186,7 @@ function Pergunta() {
 
   return (
     <div className="container">
+      <CampoBusca termoBusca={termoBusca} setTermoBusca={setTermoBusca} />
       <TabelaPrincipal />
       <NovaPergunta update={adicionarNovaPergunta} />
     </div>
