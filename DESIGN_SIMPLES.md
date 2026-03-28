@@ -1,25 +1,74 @@
-# Design Simples
+# Design Simples – ESM Forum
 
-## Análise Geral
-O backend do ESM Forum apresenta uma estrutura relativamente simples, com rotas responsáveis por manipular perguntas e respostas sem adicionar camadas desnecessárias de complexidade.
+## Objetivo do Sistema
 
-## Aspectos que seguem YAGNI
-O princípio YAGNI (You Aren’t Gonna Need It) aparece no fato de o sistema implementar apenas o necessário para o funcionamento atual do fórum, evitando abstrações excessivas ou funcionalidades antecipadas.
+O sistema consiste em um fórum web simples de perguntas e respostas, desenvolvido com fins didáticos para aplicação de conceitos de Engenharia de Software Moderna.
 
-Exemplos:
-- Rotas diretas para perguntas e respostas
-- Uso simples do banco de dados SQLite
-- Estrutura enxuta para cadastro e recuperação de informações
+O principal objetivo é permitir que usuários:
 
-## Pontos positivos
-- Código objetivo
-- Baixa complexidade inicial
-- Fácil leitura e manutenção em projeto pequeno
+- Visualizem perguntas cadastradas
+- Adicionem novas perguntas
+- Acessem respostas associadas a cada pergunta
 
-## Oportunidades de simplificação
-Mesmo sendo simples, o sistema pode evoluir com melhor separação de responsabilidades. Parte da lógica pode ser organizada em camadas como controllers e services para facilitar manutenção futura.
+---
 
-Também pode haver redução de repetição de código, caso existam trechos semelhantes em rotas diferentes.
+## Arquitetura
 
-## Conclusão
-O projeto segue parcialmente a ideia de design simples por manter uma estrutura enxuta e funcional. No entanto, há espaço para organizar melhor responsabilidades sem perder simplicidade.
+O sistema segue uma arquitetura cliente-servidor, com separação entre frontend e backend.
+
+### Frontend
+- Desenvolvido em React
+- Responsável pela interface do usuário
+- Consome dados de uma API REST
+
+### Backend
+- Desenvolvido em Node.js com Express
+- Responsável pela lógica da aplicação
+- Gerencia as perguntas e respostas
+- Expõe endpoints HTTP
+
+---
+
+## Comunicação
+
+A comunicação entre frontend e backend é feita via HTTP utilizando requisições do tipo:
+
+- `GET` → recuperar perguntas
+- `POST` → cadastrar novas perguntas
+
+Os dados são trocados no formato JSON.
+
+---
+
+## Estrutura de Dados
+
+### Pergunta
+- id_pergunta
+- texto
+- num_respostas
+
+---
+
+## Decisões de Projeto
+
+- Interface simples para facilitar entendimento
+- Uso de React Hooks (useState, useEffect)
+- Organização modular dos componentes
+- Separação clara entre lógica e interface
+
+---
+
+## Limitações
+
+- Não possui autenticação de usuários
+- Dados não persistem em banco de dados real (dependendo da implementação)
+- Interface propositalmente simples
+
+---
+
+## Possíveis Melhorias
+
+- Implementar autenticação de usuários
+- Adicionar banco de dados (MongoDB ou PostgreSQL)
+- Melhorar a interface com design mais elaborado
+- Implementar edição e exclusão de perguntas

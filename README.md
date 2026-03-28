@@ -1,52 +1,63 @@
-# Projeto Final ES1
+# ESM Forum
 
-## Sobre o Projeto
+O **ESM Forum** é uma aplicação web simples de perguntas e respostas, desenvolvida com fins didáticos para aplicação de conceitos de Engenharia de Software.
 
-Este projeto consiste na evolução do sistema **ESM Forum**, um fórum de perguntas e respostas baseado no livro Engenharia de Software Moderna.
+## 📌 Objetivo
 
-O objetivo é aplicar conceitos de Engenharia de Software, incluindo:
-- Planejamento ágil com Kanban
-- Práticas de Extreme Programming
-- Modelagem UML
-- Levantamento de requisitos
+O sistema permite que usuários:
 
----
+- Visualizem perguntas cadastradas
+- Adicionem novas perguntas
+- Acessem respostas associadas
 
-## Funcionalidades Implementadas
-
-- Busca de perguntas por palavra-chave
-- Categorização de perguntas (tags)
-- Sistema de votação (upvote/downvote)
+O projeto tem como foco demonstrar a integração entre frontend e backend utilizando arquitetura cliente-servidor.
 
 ---
 
-## Estrutura do Projeto
+## 🧱 Arquitetura
 
-- `PROCESSO.md` → Metodologia ágil (Kanban)
-- `HISTORIAS.md` → Histórias de usuário
-- `CASO_DE_USO.md` → Caso de uso
-- `docs/diagramas/` → Diagramas UML
+O sistema é dividido em duas partes principais:
 
----
+### 🔵 Backend
+- Node.js
+- Express
+- API REST
 
-## Diagramas UML
-
-### Diagrama de Classes
-![Classes](docs/diagramas/diagrama_classes.png)
-
-### Diagrama de Sequência
-![Sequência](docs/diagramas/diagrama_sequencia.png)
-
-### Diagrama de Atividades
-![Atividades](docs/diagramas/diagrama_atividades.png)
-
-### Diagrama de Estados
-![Estados](docs/diagramas/diagrama_estados.png)
+Responsável por:
+- Gerenciar perguntas
+- Expor endpoints HTTP
 
 ---
 
-## Links Importantes
+### 🟢 Frontend
+- React
+- React Bootstrap
 
-- GitHub Projects (Kanban): [COLOCA SEU LINK]
-- Backend: [COLOCA SEU LINK]
-- Frontend: [COLOCA SEU LINK]
+Responsável por:
+- Interface do usuário
+- Consumo da API
+
+---
+
+## 🔗 Repositórios
+
+- Backend: https://github.com/ThaynaPalomares/esmforum  
+- Frontend: https://github.com/ThaynaPalomares/esmforum-react  
+
+---
+
+## ⚙️ Como Executar o Projeto
+
+### Pré-requisitos
+
+- Node.js 18 LTS
+- npm
+- Git
+
+---
+
+### 1. Clonar os repositórios
+
+```bash
+git clone https://github.com/ThaynaPalomares/esmforum.git
+git clone https://github.com/ThaynaPalomares/esmforum-react.git

@@ -1,16 +1,24 @@
-# Instalação do Projeto ESM Forum
+# Instalação e Execução do Projeto ESM Forum
 
-## Objetivo
-Configurar o ambiente de desenvolvimento do sistema ESM Forum, composto por backend e frontend.
+Este documento descreve o processo de instalação e execução local do sistema ESM Forum, composto por backend e frontend.
 
 ## Pré-requisitos
-- Node.js instalado
-- npm instalado
-- Git instalado
 
-## Backend
+Antes de iniciar, é necessário ter instalado:
 
-1. Fazer fork do repositório backend (esmforum).
-2. Clonar o repositório:
-   ```bash
-   git clone https://github.com/ThaynaPalomares/esmforum.git
+- Git
+- Node.js 18 LTS
+- npm
+
+## Repositórios utilizados
+
+- Backend: https://github.com/ThaynaPalomares/esmforum
+- Frontend: https://github.com/ThaynaPalomares/esmforum-react
+
+## 1. Clonar os repositórios
+
+No terminal, acesse a pasta desejada e execute:
+
+### Backend
+```bash
+git clone https://github.com/ThaynaPalomares/esmforum.git
