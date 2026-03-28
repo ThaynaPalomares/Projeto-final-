@@ -101,9 +101,65 @@ function CampoBusca({ termoBusca, setTermoBusca }) {
   );
 }
 
+function LinhaTabela({ pergunta }) {
+  return (
+    <tr>
+      <td className="text-center">{pergunta.id_pergunta}</td>
+      <td>{pergunta.texto}</td>
+      <td className="text-center">
+        <Link to={`/resposta/${pergunta.id_pergunta}`}>
+          {pergunta.num_respostas}
+        </Link>
+      </td>
+    </tr>
+  );
+}
+
+function TabelaPrincipal({ listaPerguntas, termoBusca }) {
+  const perguntasFiltradas = listaPerguntas.filter((p) =>
+    p.texto.toLowerCase().includes(termoBusca.toLowerCase())
+  );
+
+  const linhas = perguntasFiltradas.map((p) => (
+    <LinhaTabela pergunta={p} key={p.id_pergunta} />
+  ));
+
+  return (
+    <div className="container mt-4">
+      <center><h4>Perguntas Atuais</h4></center>
+
+      {perguntasFiltradas.length === 0 ? (
+        <Alert variant="warning" className="mt-3">
+          Nenhuma pergunta encontrada.
+        </Alert>
+      ) : (
+        <Table
+          id="tabela-perguntas"
+          striped
+          bordered
+          hover
+          responsive
+          className="mt-3 shadow-sm bg-white"
+        >
+          <thead>
+            <tr>
+              <th className="text-center">ID</th>
+              <th className="text-center">Pergunta</th>
+              <th className="text-center"># Respostas</th>
+            </tr>
+          </thead>
+          <tbody>
+            {linhas}
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
+}
+
 function Pergunta() {
   const [listaPerguntas, setListaPerguntas] = React.useState([]);
-  const [termoBusca, setTermoBusca] = React.useState([]);
+  const [termoBusca, setTermoBusca] = React.useState('');
 
   function adicionarNovaPergunta(id_pergunta, pergunta) {
     setListaPerguntas((prev) => {
@@ -114,62 +170,6 @@ function Pergunta() {
       };
       return [...prev, novaPergunta];
     });
-  }
-
-  function LinhaTabela({ pergunta }) {
-    return (
-      <tr>
-        <td className="text-center">{pergunta.id_pergunta}</td>
-        <td>{pergunta.texto}</td>
-        <td className="text-center">
-          <Link to={`/resposta/${pergunta.id_pergunta}`}>
-            {pergunta.num_respostas}
-          </Link>
-        </td>
-      </tr>
-    );
-  }
-
-  function TabelaPrincipal() {
-    const perguntasFiltradas = listaPerguntas.filter((p) =>
-      p.texto.toLowerCase().includes(termoBusca.toLowerCase())
-    );
-
-    const linhas = perguntasFiltradas.map((p) => (
-      <LinhaTabela pergunta={p} key={p.id_pergunta} />
-    ));
-
-    return (
-      <div className="container mt-4">
-        <center><h4>Perguntas Atuais</h4></center>
-
-        {perguntasFiltradas.length === 0 ? (
-          <Alert variant="warning" className="mt-3">
-            Nenhuma pergunta encontrada.
-          </Alert>
-        ) : (
-          <Table
-            id="tabela-perguntas"
-            striped
-            bordered
-            hover
-            responsive
-            className="mt-3 shadow-sm bg-white"
-          >
-            <thead>
-              <tr>
-                <th className="text-center">ID</th>
-                <th className="text-center">Pergunta</th>
-                <th className="text-center"># Respostas</th>
-              </tr>
-            </thead>
-            <tbody>
-              {linhas}
-            </tbody>
-          </Table>
-        )}
-      </div>
-    );
   }
 
   React.useEffect(() => {
@@ -187,7 +187,7 @@ function Pergunta() {
   return (
     <div className="container">
       <CampoBusca termoBusca={termoBusca} setTermoBusca={setTermoBusca} />
-      <TabelaPrincipal />
+      <TabelaPrincipal listaPerguntas={listaPerguntas} termoBusca={termoBusca} />
       <NovaPergunta update={adicionarNovaPergunta} />
     </div>
   );
